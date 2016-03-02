@@ -26,41 +26,44 @@
     </head>
     <body ng-app="IonicLocalForage">
         <ion-pane>
-            <ion-header-bar class="bar-calm">
+            <ion-header-bar class="bar-positive">
               <h1 class="title">Ionic LocalForage Starter</h1>
             </ion-header-bar>
             <ion-content class="has-header padding" ng-controller="mainController">
                 <div class="list">
+                    <div class="card">
+                        <h1 class="title">Insert Data</h1>
                     
-                    <h1 class="title">Insert Data</h1>
-                    
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Key</span>
-                        <input type="text" placeholder="Enter Key" ng-model="key">
-                    </label>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Key</span>
+                            <input type="text" placeholder="Enter Key" ng-model="key">
+                        </label>
 
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Value</span>
-                        <input type="text" placeholder="Enter Value" ng-model="val">
-                    </label>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Value</span>
+                            <input type="text" placeholder="Enter Value" ng-model="val">
+                        </label>
 
-                    <div class="button-bar">
-                        <a class="button button-assertive" ng-click="resetData()">Reset</a>
-                        <a class="button button-positive" ng-click="saveData()">Insert</a>
+                        <div class="button-bar">
+                            <a class="button button-assertive" ng-click="resetData()">Reset</a>
+                            &nbsp;
+                            <a class="button button-positive" ng-click="saveData()">Insert</a>
+                        </div>
                     </div>
                 </div>
                 <div class="list">
-                    <h1 class="title">Fetch Data</h1>
+                    <div class="card">
+                        <h1 class="title">Fetch Data</h1>
                     
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Key</span>
-                        <input type="text" placeholder="Enter Key" ng-model="fetchKey">
-                    </label>
-                    
-                    <div class="button-bar">
-                        <a class="button button-balanced" ng-click="fetchData()">Fetch</a>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Key</span>
+                            <input type="text" placeholder="Enter Key" ng-model="fetchKey">
+                        </label>
+                        
+                        <div class="button-bar">
+                            <a class="button button-balanced" ng-click="fetchData()">Fetch Data</a>
+                        </div>
                     </div>
-
                 </div>
             </ion-content>
         </ion-pane>
