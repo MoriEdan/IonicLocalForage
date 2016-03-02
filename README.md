@@ -12,5 +12,18 @@ LocalForage is a JavaScript library that improves the offline experience of a we
 # Install Ionic
 Visit: http://ionicframework.com/getting-started/
 
-# Run app on browser:
-ionic serve
+# Add platforms:
+**Android:** ionic platform add android
+
+**iOS:** ionic platform add ios
+
+**Windows:** ionic platform add windows
+
+For more information visit: http://ionicframework.com/getting-started/
+
+# Build app
+**Android:** ionic build android
+
+**iOS:** ionic build ios
+
+**Windows:** ionic build windows
