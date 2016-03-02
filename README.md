@@ -8,3 +8,9 @@ Ionic is a open source SDK to develop hybrid apps. Visit: http://ionicframework.
 
 # What is LocalForage
 LocalForage is a JavaScript library that improves the offline experience of a web app and supports all major browsers. Visit: https://mozilla.github.io/localForage
+
+# Install Ionic
+Visit: http://ionicframework.com/getting-started/
+
+# Run app on browser:
+ionic serve
