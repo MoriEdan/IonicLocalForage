@@ -22,19 +22,28 @@ ionicLocalForage.run(function($ionicPlatform) {
 
 ionicLocalForage.controller('mainController', function($scope, $ionicLoading, $ionicPopup){
   
+    //data model to insert
     $scope.key = '';
     $scope.val = '';
+
+    //data model to fetch
     $scope.fetchKey = '';
 
+    //data model to update
+    $scope.updateKey = '';
+    $scope.updateVal = '';
+
+    //data model to delete
+    $scope.deleteKey = '';
+
     $scope.saveData = function(){
-        console.log("key: " + $scope.key);
-        console.log("value: " + $scope.val);
+        showLoadingIndicator();
         if(isValidValue($scope.key)){
+            hideLoadingIndicator();
             localforage.setItem($scope.key, $scope.val);
-            //alert('Data saved.');
             showPopupAlert('Data saved.');
         }else{
-            //alert('Invalid data entered.');
+            hideLoadingIndicator();
             showPopupAlert('Invalid data entered.');
         }
     }
@@ -45,10 +54,53 @@ ionicLocalForage.controller('mainController', function($scope, $ionicLoading, $i
             localforage.getItem($scope.fetchKey).then(function(value) {
                 hideLoadingIndicator();
                 if(isValidValue(value)){
-                    //showMessageAlert($scope.fetchKey, value);
-                    showPopupAlert('Key: ' + $scope.fetchKey + '\nValue: ' + value);
+                    showPopupAlert('Key: ' + $scope.fetchKey + '<br>Value: ' + value);
                 }else{
-                    //alert('Data not found.');
+                    showPopupAlert('Data not found.');
+                }
+            });
+        }else{
+            hideLoadingIndicator();
+            showPopupAlert('Invalid data entered.');
+        }
+    }
+
+    $scope.resetData = function(){
+        showLoadingIndicator();
+        $scope.key = '';
+        $scope.val = '';
+        hideLoadingIndicator();
+    }
+
+    $scope.updateData = function(){
+        showLoadingIndicator();
+        if(isValidValue($scope.updateKey) && isValidValue($scope.updateData)){
+            localforage.getItem($scope.updateKey).then(function(value) {
+                hideLoadingIndicator();
+                if(isValidValue(value)){
+                    localforage.setItem($scope.updateKey, $scope.updateData);
+                    showPopupAlert('Data updated.');
+                }else{
+                    showPopupAlert('Data not found.');
+                }
+            });
+        }else{
+            hideLoadingIndicator();
+            showPopupAlert('Invalid data inserted');
+        }
+    }
+
+    $scope.removeData = function(){
+        showLoadingIndicator();
+        if(isValidValue($scope.deleteKey)){
+            localforage.getItem($scope.deleteKey).then(function(value) {
+                if(isValidValue(value)){
+                    localforage.removeItem($scope.deleteKey, function(data){
+                        hideLoadingIndicator();
+                        showPopupAlert('Data removed');
+                    });
+                }else{
+                    hideLoadingIndicator();
                     showPopupAlert('Data not found.');
                 }
             });
@@ -59,11 +111,12 @@ ionicLocalForage.controller('mainController', function($scope, $ionicLoading, $i
         }
     }
 
-    $scope.resetData = function(){
+    $scope.clearDatabase = function(){
         showLoadingIndicator();
-        $scope.key = '';
-        $scope.val = '';
-        hideLoadingIndicator();
+        localforage.clear(function(data){
+            hideLoadingIndicator();
+            showPopupAlert('Database cleared.');
+        });
     }
 
     var isValidValue = function(value){
@@ -81,7 +134,7 @@ ionicLocalForage.controller('mainController', function($scope, $ionicLoading, $i
         $ionicPopup.alert({
             title: 'IonicLocalForage',
             template: msg
-       });
+        });
     }
 
     var showLoadingIndicator = function(){
