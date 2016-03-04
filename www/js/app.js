@@ -20,7 +20,7 @@ ionicLocalForage.run(function($ionicPlatform) {
     });
 });
 
-ionicLocalForage.controller('mainController', function($scope, $ionicLoading){
+ionicLocalForage.controller('mainController', function($scope, $ionicLoading, $ionicPopup){
   
     $scope.key = '';
     $scope.val = '';
@@ -31,9 +31,11 @@ ionicLocalForage.controller('mainController', function($scope, $ionicLoading){
         console.log("value: " + $scope.val);
         if(isValidValue($scope.key)){
             localforage.setItem($scope.key, $scope.val);
-            alert('Data saved.');
+            //alert('Data saved.');
+            showPopupAlert('Data saved.');
         }else{
-            alert('Invalid data entered.');
+            //alert('Invalid data entered.');
+            showPopupAlert('Invalid data entered.');
         }
     }
 
@@ -43,14 +45,17 @@ ionicLocalForage.controller('mainController', function($scope, $ionicLoading){
             localforage.getItem($scope.fetchKey).then(function(value) {
                 hideLoadingIndicator();
                 if(isValidValue(value)){
-                    showMessageAlert($scope.fetchKey, value);
+                    //showMessageAlert($scope.fetchKey, value);
+                    showPopupAlert('Key: ' + $scope.fetchKey + '\nValue: ' + value);
                 }else{
-                    alert('Data not found.');
+                    //alert('Data not found.');
+                    showPopupAlert('Data not found.');
                 }
             });
         }else{
             hideLoadingIndicator();
-            alert('Invalid data entered.');
+            //alert('Invalid data entered.');
+            showPopupAlert('Invalid data entered.');
         }
     }
 
@@ -70,6 +75,13 @@ ionicLocalForage.controller('mainController', function($scope, $ionicLoading){
   
     var showMessageAlert = function(key, value){
         alert("Key: "+ key + "\nValue: " + value);
+    }
+
+    var showPopupAlert = function(msg){
+        $ionicPopup.alert({
+            title: 'IonicLocalForage',
+            template: msg
+       });
     }
 
     var showLoadingIndicator = function(){
