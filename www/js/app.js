@@ -78,7 +78,7 @@ ionicLocalForage.controller('mainController', function($scope, $ionicLoading, $i
             localforage.getItem($scope.updateKey).then(function(value) {
                 hideLoadingIndicator();
                 if(isValidValue(value)){
-                    localforage.setItem($scope.updateKey, $scope.updateData);
+                    localforage.setItem($scope.updateKey, $scope.updateVal);
                     showPopupAlert('Data updated.');
                 }else{
                     showPopupAlert('Data not found.');
