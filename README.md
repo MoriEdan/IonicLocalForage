@@ -1,3 +1,5 @@
+#[Blog post](http://www.arxxus.com/blog/getting-started-with-ionic-framework-and-localforage-templates)
+
 #[Live Preview on Heroku](http://fathomless-tor-66636.herokuapp.com/)
 
 # IonicLocalForage
@@ -29,3 +31,5 @@ For more information visit: http://ionicframework.com/getting-started/
 **iOS:** ionic build ios
 
 **Windows:** ionic build windows
+
+#[License](https://github.com/wasimbeniwale/IonicLocalForage/blob/master/LICENSE.txt)
